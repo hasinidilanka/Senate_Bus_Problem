@@ -6,13 +6,17 @@ public class Main {
 
 
     public static  int riders = 0;
+    public static  int count = 0;
     public static Semaphore mutex = new Semaphore(1);
-    public static Semaphore multiplex = new Semaphore(50);
+    public static Semaphore multiplex = new Semaphore(5);
     public static Semaphore bus = new Semaphore(0);
     public static Semaphore allAboard = new Semaphore(0);
 
     public static void main(String[] args) {
 
         System.out.println("Senate Bus Problem");
+        RiderCreator riderCreator = new RiderCreator();
+        riderCreator.creator();
+
     }
 }
