@@ -14,8 +14,9 @@ public class Bus extends Thread{
             try {
                 Main.mutex.acquire();
 
-                if (Main.riders >0){
-                    System.out.println(Main.riders+ "redears are waiting for a bus.");
+                if (Main.count >0){
+                    Main.riders = Math.min(50, Main.count);
+                    System.out.println(Main.riders+ " riders are waiting for a bus.");
                     System.out.println("Bus "+Thread.currentThread().getName()+" has arrived.");
                     Main.bus.release();
                     System.out.println("Bus "+Thread.currentThread().getName()+" is waiting for riders to all aboard.");

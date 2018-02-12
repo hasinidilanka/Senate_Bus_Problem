@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class BusCreator {
+public class BusCreator extends Thread {
 
-    private int meanInterArrivalTime = 12;
+    private int meanInterArrivalTime = 1200;
 
     private int busCounter =0;
 
@@ -11,19 +11,17 @@ public class BusCreator {
         return  Math.log(1-r.nextDouble())*(-d);
     }
 
-    public void create(){
+    public void run(){
         while(true) {
             Bus bus = new Bus(Integer.toString(busCounter));
             double startTime = nextBusArrivalTime(meanInterArrivalTime);
 
             if (busCounter ==0) {
-//                System.out.println("Bus "+busCounter+" started now");
                 bus.start();
                 busCounter++;
 
             } else {
                 try {
-//                    System.out.println("Bus "+busCounter+" will start after "+startTime+" seconds.");
                     Thread.sleep((long)startTime*1000);
                     bus.start();
                     busCounter++;
